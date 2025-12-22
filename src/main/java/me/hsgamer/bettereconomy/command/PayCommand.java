@@ -64,10 +64,13 @@ public class PayCommand extends Command {
             MessageUtils.sendMessage(sender, instance.get(MessageConfig.class).getInvalidAmount());
             return false;
         }
+
         double amount = optionalAmount.get();
 
-        holder.withdraw(playerUUID, amount);
-        holder.deposit(receiverUUID, amount);
+        if (!holder.transfer(playerUUID, receiverUUID, amount)) {
+            this.instance.getLogger().warning("Failed to transfer money from " + playerUUID + " to " + receiverUUID + " for amount " + amount);
+        }
+
         MessageUtils.sendMessage(sender,
                 instance.get(MessageConfig.class).getGiveSuccess()
                         .replace("{balance}", instance.get(MainConfig.class).format(amount))

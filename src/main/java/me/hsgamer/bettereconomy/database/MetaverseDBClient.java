@@ -9,11 +9,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class JavaSqlClient implements SqlClient<Properties> {
+public class MetaverseDBClient implements SqlClient<Properties> {
 
     private final DataSource dataSource;
 
-    public JavaSqlClient() {
+    public MetaverseDBClient() {
         this.dataSource = Metaverse.get().getDatabaseProvider().getConnection();
     }
 

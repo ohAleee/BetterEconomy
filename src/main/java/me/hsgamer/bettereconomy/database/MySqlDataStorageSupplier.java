@@ -1,9 +1,15 @@
 package me.hsgamer.bettereconomy.database;
 
+import me.hsgamer.hscore.database.client.sql.SqlClient;
+
 import java.util.Collections;
 import java.util.List;
 
 public class MySqlDataStorageSupplier extends SqlDataStorageSupplier {
+
+    public MySqlDataStorageSupplier(SqlClient<?> client) {
+        super(client);
+    }
 
     @Override
     protected String getIncrementalKeyDefinition() {

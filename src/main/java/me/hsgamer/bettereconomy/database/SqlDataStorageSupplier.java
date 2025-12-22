@@ -22,13 +22,13 @@ public abstract class SqlDataStorageSupplier {
     private final SqlClient<?> client;
     private final Lock lock = new ReentrantLock();
 
-    protected SqlDataStorageSupplier(Options options) {
+    protected SqlDataStorageSupplier(SqlClient<?> client, Options options) {
         this.options = options;
-        this.client = new JavaSqlClient();
+        this.client = client;
     }
 
-    protected SqlDataStorageSupplier() {
-        this(new Options());
+    protected SqlDataStorageSupplier(SqlClient<?> client) {
+        this(client, new Options());
     }
 
     protected boolean isSingleThread() {
