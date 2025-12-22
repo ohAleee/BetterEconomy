@@ -96,6 +96,7 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
     @Override
     public void disable() {
         unregister();
+        logger.run();
     }
 
     public double get(UUID uuid) {

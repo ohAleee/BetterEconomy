@@ -42,7 +42,4 @@ public final class BetterEconomy extends BasePlugin {
         MessageUtils.setPrefix(get(MessageConfig.class)::getPrefix);
     }
 
-    @Override
-    public void enable() {
-    }
 }
