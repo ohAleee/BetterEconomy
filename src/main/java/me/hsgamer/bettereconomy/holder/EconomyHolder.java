@@ -137,28 +137,36 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
     }
 
     public boolean withdraw(UUID uuid, double amount) {
+        return withdraw(uuid, amount, true);
+    }
+
+    private boolean withdraw(UUID uuid, double amount, boolean log) {
         boolean success = set(uuid, get(uuid) - amount);
-        if (success) {
+        if (success && log) {
             logTransaction(uuid, null, -amount);
         }
         return success;
     }
 
     public boolean deposit(UUID uuid, double amount) {
+        return deposit(uuid, amount, true);
+    }
+
+    private boolean deposit(UUID uuid, double amount, boolean log) {
         boolean success = set(uuid, get(uuid) + amount);
-        if (success) {
+        if (success && log) {
             logTransaction(uuid, null, amount);
         }
         return success;
     }
 
     public boolean transfer(UUID fromUUID, UUID toUUID, double amount) {
-        if (!withdraw(fromUUID, amount)) {
+        if (!withdraw(fromUUID, amount, false)) {
             return false;
         }
-        if (!deposit(toUUID, amount)) {
+        if (!deposit(toUUID, amount, false)) {
             // rollback
-            deposit(fromUUID, amount);
+            deposit(fromUUID, amount, false);
             return false;
         }
         logTransaction(fromUUID, toUUID, amount);
