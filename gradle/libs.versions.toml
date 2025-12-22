@@ -1,0 +1,55 @@
+[versions]
+shadow = "8.3.8"
+linguica = "0.5"
+
+paper = "1.21.8-R0.1-SNAPSHOT"
+
+lombok = "1.18.42"
+
+metaverse = "1.0.3"
+
+vault = "1.7.1"
+papi = "2.11.6"
+hscore = "4.6.0"
+minelib = "1.2.5"
+topper = "4.6.0"
+topper-runnable = "4.0.0"
+annotations = "26.0.2"
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+linguica = { id = "net.linguica.maven-settings", version.ref = "linguica" }
+
+[libraries]
+paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
+
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+
+metaverse = { group = "it.metamc.metaverse", name = "api", version.ref = "metaverse" }
+
+vault-api = { group = "com.github.MilkBowl", name = "VaultAPI", version.ref = "vault" }
+placeholder-api = { group = "me.clip", name = "placeholderapi", version.ref = "papi" }
+jetbrains-annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+
+# HSCore
+hscore-common = { group = "me.hsgamer", name = "hscore-common", version.ref = "hscore" }
+hscore-bukkit-utils = { group = "me.hsgamer", name = "hscore-bukkit-utils", version.ref = "hscore" }
+hscore-bukkit-config = { group = "me.hsgamer", name = "hscore-bukkit-config", version.ref = "hscore" }
+hscore-config-proxy = { group = "me.hsgamer", name = "hscore-config-proxy", version.ref = "hscore" }
+
+# Topper
+topper-data = { group = "me.hsgamer", name = "topper-data-simple", version.ref = "topper" }
+topper-agent-core = { group = "me.hsgamer", name = "topper-agent-core", version.ref = "topper" }
+topper-agent-snapshot = { group = "me.hsgamer", name = "topper-agent-snapshot", version.ref = "topper" }
+topper-agent-storage = { group = "me.hsgamer", name = "topper-agent-storage", version.ref = "topper" }
+topper-storage-sql-conv = { group = "me.hsgamer", name = "topper-storage-sql-converter", version.ref = "topper" }
+topper-spigot-runnable = { group = "me.hsgamer", name = "topper-spigot-agent-runnable", version.ref = "topper-runnable" }
+
+# MineLib Modules
+minelib-plugin-base = { group = "io.github.projectunified", name = "minelib-plugin-base", version.ref = "minelib" }
+minelib-plugin-listener = { group = "io.github.projectunified", name = "minelib-plugin-listener", version.ref = "minelib" }
+minelib-plugin-command = { group = "io.github.projectunified", name = "minelib-plugin-command", version.ref = "minelib" }
+minelib-plugin-permission = { group = "io.github.projectunified", name = "minelib-plugin-permission", version.ref = "minelib" }
+minelib-util-subcommand = { group = "io.github.projectunified", name = "minelib-util-subcommand", version.ref = "minelib" }
+minelib-scheduler-global = { group = "io.github.projectunified", name = "minelib-scheduler-global", version.ref = "minelib" }
+minelib-scheduler-async = { group = "io.github.projectunified", name = "minelib-scheduler-async", version.ref = "minelib" }

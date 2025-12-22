@@ -37,14 +37,13 @@ public class PayCommand extends Command {
             MessageUtils.sendMessage(sender, getUsage());
             return false;
         }
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             MessageUtils.sendMessage(sender, instance.get(MessageConfig.class).getPlayerOnly());
             return false;
         }
 
         EconomyHolder holder = instance.get(EconomyHolder.class);
 
-        Player player = (Player) sender;
         OfflinePlayer receiver = Utils.getOfflinePlayer(args[0]);
         if (receiver == player) {
             MessageUtils.sendMessage(sender, instance.get(MessageConfig.class).getCannotDo());
@@ -61,7 +60,7 @@ public class PayCommand extends Command {
                 .map(BigDecimal::doubleValue)
                 .filter(value -> value > 0)
                 .filter(value -> holder.has(playerUUID, value));
-        if (!optionalAmount.isPresent()) {
+        if (optionalAmount.isEmpty()) {
             MessageUtils.sendMessage(sender, instance.get(MessageConfig.class).getInvalidAmount());
             return false;
         }

@@ -12,7 +12,6 @@ public final class Utils {
         // EMPTY
     }
 
-    @SuppressWarnings("deprecation")
     public static OfflinePlayer getOfflinePlayer(String player) {
         return Optional.<OfflinePlayer>ofNullable(Bukkit.getPlayer(player)).orElseGet(() -> Bukkit.getOfflinePlayer(player));
     }

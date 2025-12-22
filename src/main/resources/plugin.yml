@@ -1,13 +1,13 @@
 name: BetterEconomy
-version: '${project.version}'
+version: ${version}
 main: me.hsgamer.bettereconomy.BetterEconomy
-api-version: 1.13
+api-version: 1.21
 softdepend:
   - Vault
-  - Treasury
   - PlaceholderAPI
 authors:
   - HSGamer
   - takahatashun
-description: ${project.description}
+  - ohAlee
+description: A better economy plugin for Minecraft servers.
 folia-supported: true

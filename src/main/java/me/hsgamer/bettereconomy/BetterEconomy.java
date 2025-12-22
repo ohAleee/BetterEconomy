@@ -14,7 +14,6 @@ import me.hsgamer.bettereconomy.listener.JoinListener;
 import me.hsgamer.hscore.bukkit.config.BukkitConfig;
 import me.hsgamer.hscore.bukkit.utils.MessageUtils;
 import me.hsgamer.hscore.config.proxy.ConfigGenerator;
-import org.bstats.bukkit.Metrics;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +44,5 @@ public final class BetterEconomy extends BasePlugin {
 
     @Override
     public void enable() {
-        new Metrics(this, 12981);
     }
 }

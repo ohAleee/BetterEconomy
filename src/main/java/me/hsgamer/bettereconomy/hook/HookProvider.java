@@ -3,10 +3,7 @@ package me.hsgamer.bettereconomy.hook;
 import io.github.projectunified.minelib.plugin.base.Loadable;
 import me.hsgamer.bettereconomy.BetterEconomy;
 import me.hsgamer.bettereconomy.hook.placeholderapi.EconomyPlaceholder;
-import me.hsgamer.bettereconomy.hook.treasury.TreasuryEconomyHook;
 import me.hsgamer.bettereconomy.hook.vault.VaultEconomyHook;
-import me.lokka30.treasury.api.common.service.ServiceRegistry;
-import me.lokka30.treasury.api.economy.EconomyProvider;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
@@ -30,14 +27,6 @@ public class HookProvider implements Loadable {
                     new VaultEconomyHook(instance),
                     instance,
                     ServicePriority.High
-            );
-        }
-        if (Bukkit.getPluginManager().getPlugin("Treasury") != null) {
-            ServiceRegistry.INSTANCE.registerService(
-                    EconomyProvider.class,
-                    new TreasuryEconomyHook(instance),
-                    instance.getName(),
-                    me.lokka30.treasury.api.common.service.ServicePriority.NORMAL
             );
         }
     }

@@ -85,15 +85,12 @@ public class EconomyPlaceholder extends PlaceholderExpansion {
 
         if (player == null) return null;
 
-        switch (lower) {
-            case "balance":
-                return String.valueOf(holder.get(player.getUniqueId()));
-            case "balance_formatted":
-                return instance.get(MainConfig.class).format(holder.get(player.getUniqueId()));
-            case "top":
-                return String.valueOf(holder.getSnapshotAgent().getSnapshotIndex(player.getUniqueId()) + 1);
-        }
+        return switch (lower) {
+            case "balance" -> String.valueOf(holder.get(player.getUniqueId()));
+            case "balance_formatted" -> instance.get(MainConfig.class).format(holder.get(player.getUniqueId()));
+            case "top" -> String.valueOf(holder.getSnapshotAgent().getSnapshotIndex(player.getUniqueId()) + 1);
+            default -> null;
+        };
 
-        return null;
     }
 }

@@ -58,7 +58,7 @@ public abstract class ChangeMoneySubCommand extends SubCommand {
     @Override
     public void onSubCommand(@NotNull CommandSender sender, @NotNull String label, @NotNull String... args) {
         Optional<Double> amountOptional = Validate.getNumber(args[1]).map(BigDecimal::doubleValue).filter(value -> value >= 0);
-        if (!amountOptional.isPresent()) {
+        if (amountOptional.isEmpty()) {
             MessageUtils.sendMessage(sender, instance.get(MessageConfig.class).getInvalidAmount());
             return;
         }
@@ -92,7 +92,7 @@ public abstract class ChangeMoneySubCommand extends SubCommand {
         if (args.length == 1) {
             String name = args[0].trim();
             return Stream.concat(Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName), Stream.of("@a", "@p"))
-                    .filter(playerName -> name.isEmpty() || playerName.startsWith(name))
+                    .filter(playerName -> playerName.startsWith(name))
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
