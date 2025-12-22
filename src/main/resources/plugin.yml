@@ -2,6 +2,8 @@ name: BetterEconomy
 version: ${version}
 main: me.hsgamer.bettereconomy.BetterEconomy
 api-version: 1.21
+depend:
+  - Metaverse
 softdepend:
   - Vault
   - PlaceholderAPI

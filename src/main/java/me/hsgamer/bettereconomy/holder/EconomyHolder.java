@@ -39,13 +39,11 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
     @Getter
     private SnapshotAgent<UUID, Double> snapshotAgent;
 
-    private final MetaverseDBClient client;
-    private final TransactionQueue logger;
+    private MetaverseDBClient client;
+    private TransactionQueue logger;
 
     public EconomyHolder(BetterEconomy instance) {
         this.instance = instance;
-        this.client = new MetaverseDBClient();
-        this.logger = new TransactionQueue(this.client);
 
         entryAgents.add(new DataEntryAgent<>() {
             @Override
@@ -74,6 +72,9 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
 
     @Override
     public void load() {
+        this.client = new MetaverseDBClient();
+        this.logger = new TransactionQueue(this.client);
+
         storageAgent = new StorageAgent<>(getStorage());
         agents.add(storageAgent);
         entryAgents.add(storageAgent);
