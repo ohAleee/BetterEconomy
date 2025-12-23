@@ -130,7 +130,7 @@ public abstract class SqlDataStorageSupplier {
                 try {
                     Connection connection = client.getConnection();
                     connection.setAutoCommit(false);
-                    Modifier<K, V> modifier = new Modifier<K, V>() {
+                    Modifier<K, V> modifier = new Modifier<>() {
                         @Override
                         public void save(Map<K, V> map) throws SQLException {
                             String[] keyColumns = keyConverter.getSqlColumns();

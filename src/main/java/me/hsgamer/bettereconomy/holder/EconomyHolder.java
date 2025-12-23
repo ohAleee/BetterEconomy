@@ -12,9 +12,7 @@ import me.hsgamer.bettereconomy.transaction.TransactionQueue;
 import me.hsgamer.topper.agent.core.Agent;
 import me.hsgamer.topper.agent.core.AgentHolder;
 import me.hsgamer.topper.agent.core.DataEntryAgent;
-import me.hsgamer.topper.agent.snapshot.SnapshotAgent;
 import me.hsgamer.topper.agent.storage.StorageAgent;
-import me.hsgamer.topper.data.core.DataEntry;
 import me.hsgamer.topper.data.simple.SimpleDataHolder;
 import me.hsgamer.topper.spigot.agent.runnable.SpigotRunnableAgent;
 import me.hsgamer.topper.storage.core.DataStorage;
@@ -25,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,21 +33,12 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
 
     @Getter
     private StorageAgent<UUID, Double> storageAgent;
-    @Getter
-    private SnapshotAgent<UUID, Double> snapshotAgent;
 
     private MetaverseDBClient client;
     private TransactionQueue logger;
 
     public EconomyHolder(BetterEconomy instance) {
         this.instance = instance;
-
-        entryAgents.add(new DataEntryAgent<>() {
-            @Override
-            public void onCreate(DataEntry<UUID, Double> entry) {
-                entry.setValue(instance.get(MainConfig.class).getStartAmount(), true);
-            }
-        });
     }
 
     private DataStorage<UUID, Double> getStorage() {
@@ -80,13 +68,7 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
         entryAgents.add(storageAgent);
         agents.add(storageAgent.getLoadAgent(this));
         agents.add(new SpigotRunnableAgent(storageAgent, AsyncScheduler.get(instance), instance.get(MainConfig.class).getSaveFilePeriod()));
-        agents.add(new SpigotRunnableAgent(logger, AsyncScheduler.get(instance),100L));
-
-        snapshotAgent = SnapshotAgent.create(this);
-        snapshotAgent.setComparator(Comparator.reverseOrder());
-        snapshotAgent.setFilter(entry -> entry.getValue() != null);
-        agents.add(snapshotAgent);
-        agents.add(new SpigotRunnableAgent(snapshotAgent, AsyncScheduler.get(instance), instance.get(MainConfig.class).getUpdateBalanceTopPeriod()));
+        agents.add(new SpigotRunnableAgent(logger, AsyncScheduler.get(instance), 100L));
     }
 
     @Override

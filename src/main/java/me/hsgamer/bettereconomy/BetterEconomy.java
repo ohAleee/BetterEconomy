@@ -3,7 +3,6 @@ package me.hsgamer.bettereconomy;
 import io.github.projectunified.minelib.plugin.base.BasePlugin;
 import io.github.projectunified.minelib.plugin.command.CommandComponent;
 import me.hsgamer.bettereconomy.command.BalanceCommand;
-import me.hsgamer.bettereconomy.command.BalanceTopCommand;
 import me.hsgamer.bettereconomy.command.MainCommand;
 import me.hsgamer.bettereconomy.command.PayCommand;
 import me.hsgamer.bettereconomy.config.MainConfig;
@@ -28,7 +27,6 @@ public final class BetterEconomy extends BasePlugin {
                 new Permissions(this),
                 new CommandComponent(this,
                         new BalanceCommand(this),
-                        new BalanceTopCommand(this),
                         new MainCommand(this),
                         new PayCommand(this)
                 ),
