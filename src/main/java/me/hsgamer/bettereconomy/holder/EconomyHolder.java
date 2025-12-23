@@ -41,6 +41,11 @@ public class EconomyHolder extends SimpleDataHolder<UUID, Double> implements Age
         this.instance = instance;
     }
 
+    @Override
+    public @Nullable Double getDefaultValue() {
+        return instance.get(MainConfig.class).getStartAmount();
+    }
+
     private DataStorage<UUID, Double> getStorage() {
         return new MySqlDataStorageSupplier(this.client)
                 .getStorage("lifesteal_economy",
